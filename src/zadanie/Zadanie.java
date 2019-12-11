@@ -24,18 +24,18 @@ public class Zadanie {
 //        OurFrame frame = new OurFrame();
 
         JOurFrame frame = new JOurFrame();
+ /*
+//        int MAXDLZKAKLUCA = 10;
+//        boolean skontrolovat = true; //false;
         
-        int MAXDLZKAKLUCA = 10;
-        boolean skontrolovat = true; //false;
-        
-        Scanner ZasifrovanyText = new Scanner(System.in); 
-        System.out.println("Zadaj Zasifrovany Text: ");
-        String ZT = ZasifrovanyText.nextLine();
+//        Scanner ZasifrovanyText = new Scanner(System.in);
+//        System.out.println("Zadaj Zasifrovany Text: ");
+//        String ZT = ZasifrovanyText.nextLine();
         
        
        
         //String ZT = "TANRAPSIOSITCONPIRHESIEAMHTOODEFRNCPYOTIBNHYWCIHHTPEIOSITSONEHBLDUYTNIOSLFPIAENTTXIWHHCEAROCOMMLNHYCRATACRERSORGPOUOSHFCRATACRERSASEFHIETCDAOCIRDGNATOERLGURASSYETXMX";  
-       String heslo = "heslo";  // 2 1 5 4 3
+//       String heslo = "heslo";  // 2 1 5 4 3
 
         // String ZT = "EHTVONWLEFSASRIUPTILBEHSNIDHYBDDOSREUOTTHGINOHTNNUEETIIKDDGNTMOOEHGIRANIOBLCKOTNONIAFASNORSITEIPAECHDNFLANOTLPEETAYBSTRATSI";
         //String heslo = "nie";    // 3 2 1
@@ -49,36 +49,36 @@ public class Zadanie {
        // String ZT = "NJRKAOLAKNSDAIRLAOA2LPAR14I28ODDOI2RMNAARSAYIRARCAMJKAAALKARANAHJNOYZZEEIODEEVLFZIASEKZANILVVVOOJASROSOKDUMIIVVPSTKLOMOLIAKSMUAILZAADNKJNLSEK1EO8841V8R23OO8C3H5K131V7SNT8AOEGVYAMVLZNVISUAAMVJMSGKEAORMEIP4TESBE8R3A7M1ZSSAAPLAILNUYMCVAEVLKODCEEIUSADLODTVOO8K4U1R1OZOHBTDTOIOZAASCBAVHDAVLEOIHJTOILNEAESCPERZKAHTDONJAOESBLEENTAAKAEOSTTZUOEENTKNKROEIVTOOHRHJSONBIEAYCRCVHOKPNTZAKCRIHOAHVLYELCCVCSHKUOYTCVETLRIOAEMSEPNBOPUAATVOTLSMMKIACAALHAAVHAALACKVORCKO8H8441211USADLONTVYAVCKEELUAZKRDKEMUUHJCAINOLNBKETDIEI";
 //        String heslo = "jankokral";    // 2 8 1 4 6 9 3 5 7
         
-        ZT = Text.convertToTSA(ZT, false);
-        System.out.println("ZT = " +ZT);
-        //System.out.println();
-        //JAZYK
-       // System.out.println(Language.guessLanguage(ZT));
-       //SIFRA
-       // System.out.println(Cryptosystem.guess(ZT));
+//        ZT = Text.convertToTSA(ZT, false);
+//        System.out.println("ZT = " +ZT);
+//        //System.out.println();
+//        //JAZYK
+//       // System.out.println(Language.guessLanguage(ZT));
+//       //SIFRA
+//       // System.out.println(Cryptosystem.guess(ZT));
+//
+//        String OT = "";
+//        TranspositionCipher tc = new TranspositionCipher();
+//
         
-        String OT = "";
-        TranspositionCipher tc = new TranspositionCipher();  
         
-        
-        
-        if(skontrolovat == true)
-        {
-            int len = heslo.length();
-            Integer[] tkp = new Integer[len];
-            tkp = AphabeticalSequence.Alpha(heslo.toLowerCase());
-
-            TranspositionKey tkeySkontrol = new TranspositionKey(tkp);
-            System.out.println("OT = "+tc.decrypt(ZT,tkeySkontrol));
-
-
-            System.out.print("Permutacia = ");
-            for(int p = 0; p < tkp.length; p++)
-            {   
-                System.out.print(tkp[p] + " " );
-            }
-            System.out.println();
-        }
+//        if(skontrolovat == true)
+//        {
+//            int len = heslo.length();
+//            Integer[] tkp = new Integer[len];
+//            tkp = AphabeticalSequence.Alpha(heslo.toLowerCase());
+//
+//            TranspositionKey tkeySkontrol = new TranspositionKey(tkp);
+//            System.out.println("OT = "+tc.decrypt(ZT,tkeySkontrol));
+//
+//
+//            System.out.print("Permutacia = ");
+//            for(int p = 0; p < tkp.length; p++)
+//            {
+//                System.out.print(tkp[p] + " " );
+//            }
+//            System.out.println();
+//        }
         
         //frekvencia ZT
 //        HashMap<String,Double> frek = new HashMap<String,Double>();
