@@ -1,0 +1,68 @@
+package zadanie.graphics;
+
+import jdk.nashorn.internal.scripts.JD;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class JDefault extends JFrame {
+
+    private JButton jOurFrame;
+    private JButton jSecondFrame;
+    private JButton close;
+
+    public JDefault() {
+        getContentPane().setBackground(Color.GRAY);
+        this.setName("Transition breaker 2.0");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(null);
+        this.setSize(350, 350);
+        this.setVisible(true);
+
+        jOurFrame = new JButton("Anagram");
+        jOurFrame.setBackground(Color.DARK_GRAY);
+        jOurFrame.setForeground(Color.WHITE);
+        jOurFrame.setBounds(50, 100, 100, 30);
+
+        jSecondFrame = new JButton("Geneticky");
+        jSecondFrame.setBackground(Color.DARK_GRAY);
+        jSecondFrame.setForeground(Color.WHITE);
+        jSecondFrame.setBounds(200, 100, 100, 30);
+
+        close = new JButton("Exit");
+        close.setBackground(Color.DARK_GRAY);
+        close.setForeground(Color.WHITE);
+        close.setBounds(125, 250, 100, 30);
+
+        this.add(close);
+        this.add(jOurFrame);
+        this.add(jSecondFrame);
+
+        jOurFrame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOurFrame ourFrame = new JOurFrame();
+                JDefault.this.dispose();
+            }
+        });
+
+        jSecondFrame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JSecondFrame jSecondFrame = new JSecondFrame();
+                JDefault.this.dispose();
+            }
+        });
+
+        close.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDefault.this.dispose();
+            }
+        });
+
+    }
+
+}

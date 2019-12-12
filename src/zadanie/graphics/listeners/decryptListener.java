@@ -16,7 +16,7 @@ import java.util.List;
 
 public class decryptListener {
 
-    private int MAXDLZKAKLUCA = 6;
+    private int MAXDLZKAKLUCA = 10;
     private int[] SavePerm = new int[1];
 
     public String decrypt(String ZT) {

@@ -138,6 +138,7 @@ public class JOurFrame extends JFrame {
         konci.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JDefault jDefault = new JDefault();
                 JOurFrame.super.dispose();
             }
         });
