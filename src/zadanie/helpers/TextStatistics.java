@@ -53,6 +53,35 @@ public class TextStatistics {
         return retVal;
     }
     
+     public static Double[] Read1Grams(String txt, boolean relativeFr)
+    {
+        Double[] abc = new Double[26];
+                      
+            for(int j = 0; j <26; j++)
+            {
+                abc[j] = 0.0;
+                for (int i = 0; i < (txt.length()-1); i++) 
+                {
+                    char letter = (char)('a'+j);
+                    char letter2 = Character.toLowerCase(txt.charAt(i));
+                    
+                    if( letter == letter2)
+                    {
+                        abc[j] += 1.0;
+                    }
+                }
+            }
+        if (relativeFr)
+        {
+            for (int k = 0; k < 26; k++)
+            {
+                abc[k] = abc[k] / txt.length();
+            }
+        }
+            
+        return abc;
+    }
+     
     public static double IndexOfCoincidence(Double stat[], double n)
     {
         double ic=0;
