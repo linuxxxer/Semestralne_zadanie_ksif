@@ -65,17 +65,24 @@ public class Cryptosystem {
         else
         {
             TextStatistics tx = new TextStatistics();
-            Collection <Double> frek = TextStatistics.readNgram(txt,1,true).values();
+          //  Collection <Double> frek = TextStatistics.readNgram(txt,1,true).values();
             
-            Double abc[] = new Double[frek.size()];
-            frek.toArray(abc);
-                                 
+            
+            
+            Double[] abc = new Double[26];
+            abc = TextStatistics.Read1Grams(txt, true);
+            
+          // ref = {0.08167, 0.01492, 0.02782, 0.04253, 0.12702, 0.02228, 0.02015,
+          //        0.06094, 0.06966, 0.00153, 0.00772, 0.04025, 0.02406, 0.06749, 0.07507,
+          //        0.01929, 9.5E-4, 0.05987, 0.063269, 0.0905599, 0.02758, 0.00978, 0.0236, 0.0015, 0.01974, 7.4E-4};
+    
+            
             int tr =0;
             int ma =0;
-            for(int i=0; i < 22; i++)
+            for(int i=0; i < 26; i++)
             {
                 if( (Math.abs(abc[i] - tx.ref[i])) < 0.01)
-                    tr++;
+                     tr++;
                 else ma++;
             }
             if(tr < ma)
