@@ -1,7 +1,9 @@
 package zadanie.graphics;
 
+import sun.awt.X11.XkbAccessXNotifyEvent;
 import zadanie.graphics.listeners.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,15 +15,20 @@ public class JOurFrame extends JFrame {
     private JButton desifruj;
     private JButton nacitaj;
     private JButton konci;
+    private JButton clear;
     private JTextField textField;
+
+    private String DEFAULTPERMLABELTEXT = "Unknown permutation";
 
     decryptListener decryptIt;
     String permutation;
 
     public JOurFrame() {
 
-        decryptIt = new decryptListener();
+        getContentPane().setBackground(Color.GRAY);
+//        this.setBackground(Color.LIGHT_GRAY);
 
+        decryptIt = new decryptListener();
 
 //        nastavenie roznych objektov
         zadajText = new JLabel();
@@ -33,16 +40,20 @@ public class JOurFrame extends JFrame {
         textField.setBounds(190,50,390,30);
 
         desifruj = new JButton("Dešifrovať");
+        desifruj.setBackground(Color.DARK_GRAY);
+        desifruj.setForeground(Color.WHITE);
         desifruj.setBounds(250,100,120,40);
 
         label2 = new JLabel("Alebo načítaj zo súboru...");
-        label2.setBounds(10,150,200,20);
-        label2.setVerticalAlignment(SwingConstants.TOP);
+        label2.setBounds(10,175,200,20);
+        label2.setVerticalAlignment(SwingConstants.CENTER);
 
         nacitaj = new JButton("Načítať");
-        nacitaj.setBounds(250, 150, 120, 40);
+        nacitaj.setBackground(Color.DARK_GRAY);
+        nacitaj.setForeground(Color.WHITE);
+        nacitaj.setBounds(250, 165, 120, 40);
 
-        permLabel = new JLabel("Unknown permutation");
+        permLabel = new JLabel(DEFAULTPERMLABELTEXT);
         permLabel.setBounds(10, 225, 580, 20);
 
         ot = new JTextArea(5, 20);
@@ -53,14 +64,22 @@ public class JOurFrame extends JFrame {
         otScroll = new JScrollPane(ot);
         otScroll.setBounds(10, 250, 580, 250);
 
+        clear = new JButton("Clear");
+        clear.setBackground(Color.DARK_GRAY);
+        clear.setForeground(Color.WHITE);
+        clear.setBounds(180, 520, 120, 40);
+
         konci = new JButton("Exit");
-        konci.setBounds(250, 520, 120, 40);
+        konci.setBackground(Color.DARK_GRAY);
+        konci.setForeground(Color.WHITE);
+        konci.setBounds(320, 520, 120, 40);
 
 
 //        nastavenia frameu
         this.setName("Transposition Cipher");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         this.add(zadajText);
         this.add(textField);
@@ -69,6 +88,7 @@ public class JOurFrame extends JFrame {
         this.add(nacitaj);
         this.add(desifruj);
         this.add(konci);
+        this.add(clear);
 //        this.add(ot);
 //        otScroll.setSize(570, 250);
         this.add(otScroll);
@@ -83,7 +103,7 @@ public class JOurFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String ZT = textField.getText();
                 ot.setText(decryptIt.decrypt(ZT));
-                permLabel.setText(decryptIt.getPerm());
+                permLabel.setText("Permutation: " + decryptIt.getPerm());
             }
         });
 
@@ -95,7 +115,22 @@ public class JOurFrame extends JFrame {
                         .decrypt( readListener
                                 .readFromFile( readListener
                                         .getPath(JOurFrame.super.rootPane)) ) );
-                permLabel.setText(decryptIt.getPerm());
+                String perm = decryptIt.getPerm();
+                if (perm.equals("0")) {
+                    permLabel.setText(DEFAULTPERMLABELTEXT);
+                } else {
+                    permLabel.setText("Permutation: " + decryptIt.getPerm());
+                }
+
+            }
+        });
+
+//        action listener na vyprazdnenie poli
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                permLabel.setText("Unknown permutation");
+                ot.setText("");
             }
         });
 

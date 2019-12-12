@@ -20,12 +20,20 @@ public class decryptListener {
     private int[] SavePerm = new int[1];
 
     public String decrypt(String ZT) {
+        if (ZT == null) {
+            return null;
+        }
+
 
 
         String OT = "";
         TranspositionCipher tc = new TranspositionCipher();
 
         ZT = Text.convertToTSA(ZT, false);
+
+        if (!checkZatvorenyText(ZT) ) {
+            return "Error: nie je to transpozicna sifra";
+        }
 
         HashMap<String, Double> frek = new HashMap<String, Double>();
         frek = TextStatistics.readNgram(ZT, 2, true);
@@ -137,6 +145,14 @@ public class decryptListener {
             perm.append(i);
         }
         return perm.toString();
+    }
+
+    private boolean checkZatvorenyText(String ZT) {
+        if (Math.isPrime(ZT.length())) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

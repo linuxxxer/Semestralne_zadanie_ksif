@@ -14,6 +14,9 @@ import java.io.IOException;
 public class readListener {
 
     public static String readFromFile(String pathToFile) {
+        if (pathToFile == null) {
+            return null;
+        }
         String file = "";
         try {
             BufferedReader reader = new BufferedReader(new FileReader(pathToFile));
