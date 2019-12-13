@@ -20,13 +20,14 @@ public class GeneticalAlgorithm {
 
     private int DEF_POP = 12;
 
-    ArrayList<Integer[]> population;
+    ArrayList<Integer[]> population = new ArrayList<>();
 
     HashMap<Integer[], Double> fitness;
 
     public GeneticalAlgorithm(String CT, int KS) {
         this.cipherText = Text.convertToTSA(CT, false);
         this.keySize = KS;
+        geneticAlgorithmRun();
     }
 
     public GeneticalAlgorithm(String cipherText, int keySize, int iterationNo) {
@@ -41,22 +42,27 @@ public class GeneticalAlgorithm {
         }
     }
 
+    private boolean contains(Integer[] x, int a){
+        for(int i=0;i<x.length;i++){
+            if(x[i] == null)
+                x[i] = -1;
+            if(x[i] == a)
+                return true;
+        }
+        return false;
+    }
+
     private Integer[] genIndividual() {
         Random random = new Random();
         int recent;
         int prev = 0;
         Integer[] ret = new Integer[keySize];
-        for (int i = 0; i < keySize; i++) {
-            if (i == 0) {
-                recent = random.nextInt(keySize);
-                prev = recent;
-            } else {
-                while ( (recent = random.nextInt(keySize)) == prev ) {
-                    ;
-                }
-                prev = recent;
-            }
-            ret[i] = recent;
+        for(int j=0;j<keySize;j++) {
+            int rand;
+            do {
+                rand = random.nextInt(keySize) + 1;
+            } while (contains(ret, rand));
+            ret[j] = rand;
         }
         return ret;
     }
@@ -72,6 +78,7 @@ public class GeneticalAlgorithm {
         double bigramFitness;
 
         Mutation mutate = new Mutation();
+        Crossing cross = new Crossing();
 
         TranspositionCipher transCipher = new TranspositionCipher();
         TranspositionKey transKey;
@@ -101,6 +108,10 @@ public class GeneticalAlgorithm {
 //            TODO              if so, modify the genIndividual() method!!!
 
 //                TODO crossing ???
+            //System.out.println();
+            for(int j=1;j<bests.size();j+=2) {
+                bests.set(j - 1,cross.crossover(bests.get(j-1), bests.get(j), 0.85));
+            }
 
 //                mutation
             for (Integer[] individual : bests) {
@@ -111,6 +122,7 @@ public class GeneticalAlgorithm {
             for (Integer[] individual : bests) {
                 population.add(individual);
             }
+
 
 
         }
@@ -125,7 +137,7 @@ public class GeneticalAlgorithm {
         List<Integer[]> keys = new LinkedList(fitness.keySet());
         List<Double> values = new LinkedList(fitness.values());
         values.sort(Comparator.naturalOrder());
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {   //TODO Preco 6 ??????????????
             for (Map.Entry<Integer[], Double> entry : fitness.entrySet()) {
                 if (entry.getValue().equals(values.get(i))) {
                     bests.add(entry.getKey());
