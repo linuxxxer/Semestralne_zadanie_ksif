@@ -14,10 +14,7 @@ public class Zadanie {
     
     public static void main(String[] args) {
 
-//        JDefault frame = new JDefault();
+        JDefault frame = new JDefault();
 
-        GeneticalAlgorithm geneticalAlgorithm = new GeneticalAlgorithm("AB", 5);
-
-        geneticalAlgorithm.testFunc();
     }
 }
