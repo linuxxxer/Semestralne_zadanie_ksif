@@ -99,11 +99,17 @@ public class GeneticalAlgorithm {
 //            TODO call the crossing algorithm and the mutation for the best 6
 //            TODO do we need to generate 6 more individuals?
 //            TODO              if so, modify the genIndividual() method!!!
+
 //                TODO crossing ???
 
 //                mutation
             for (Integer[] individual : bests) {
                 individual = mutate.mutate(individual, mutationProbability);
+            }
+
+            population.clear();
+            for (Integer[] individual : bests) {
+                population.add(individual);
             }
 
 
@@ -113,6 +119,7 @@ public class GeneticalAlgorithm {
     }
 
 //    method for selecting the best 6 individuals by their fitness value
+//    tato cast boli... ale funguje
     private ArrayList<Integer[]> selectSixBest() {
         ArrayList<Integer[]> bests = new ArrayList<Integer[]>(6);
         List<Integer[]> keys = new LinkedList(fitness.keySet());
