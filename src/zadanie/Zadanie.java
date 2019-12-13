@@ -1,5 +1,8 @@
 package zadanie;
 
+import zadanie.crypto.Implementation.TranspositionKey;
+import zadanie.crypto.genalg.GeneticalAlgorithm;
+import zadanie.crypto.genalg.Mutation;
 import zadanie.graphics.JDefault;
 import zadanie.graphics.JOurFrame;
 
@@ -11,7 +14,10 @@ public class Zadanie {
     
     public static void main(String[] args) {
 
-//        JOurFrame frame = new JOurFrame();
-        JDefault frame = new JDefault();
+//        JDefault frame = new JDefault();
+
+        GeneticalAlgorithm geneticalAlgorithm = new GeneticalAlgorithm("AB", 5);
+
+        geneticalAlgorithm.testFunc();
     }
 }

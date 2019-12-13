@@ -6,10 +6,7 @@ import zadanie.crypto.Implementation.TranspositionKey;
 import zadanie.helpers.Text;
 import zadanie.helpers.TextStatistics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class GeneticalAlgorithm {
 
@@ -18,6 +15,8 @@ public class GeneticalAlgorithm {
 //    default keySize = 5
     private int keySize = 5;
     private int iterationNo = 500;
+
+    private double mutationProbability = 0.1;
 
     private int DEF_POP = 12;
 
@@ -63,12 +62,16 @@ public class GeneticalAlgorithm {
     }
 
     public void geneticAlgorithmRun() {
-
+        fitness = new HashMap<>();
         HashMap<String, Double> frek;
+
+        ArrayList<Integer[]> bests = new ArrayList<>();
 
         double[][] bigramIn;
 
         double bigramFitness;
+
+        Mutation mutate = new Mutation();
 
         TranspositionCipher transCipher = new TranspositionCipher();
         TranspositionKey transKey;
@@ -90,20 +93,40 @@ public class GeneticalAlgorithm {
                 }
                 fitness.put(pop, bigramFitness);
             }
+
+            bests = selectSixBest();
+
 //            TODO call the crossing algorithm and the mutation for the best 6
 //            TODO do we need to generate 6 more individuals?
 //            TODO              if so, modify the genIndividual() method!!!
+//                TODO crossing ???
+
+//                mutation
+            for (Integer[] individual : bests) {
+                individual = mutate.mutate(individual, mutationProbability);
+            }
+
+
         }
 
 
     }
 
-    private void mutate() {
-//      TODO make the mutation algorithm
-    }
-
-    private void cross() {
-//        TODO make the crossing algorithm
+//    method for selecting the best 6 individuals by their fitness value
+    private ArrayList<Integer[]> selectSixBest() {
+        ArrayList<Integer[]> bests = new ArrayList<Integer[]>(6);
+        List<Integer[]> keys = new LinkedList(fitness.keySet());
+        List<Double> values = new LinkedList(fitness.values());
+        values.sort(Comparator.naturalOrder());
+        for (int i = 0; i < 6; i++) {
+            for (Map.Entry<Integer[], Double> entry : fitness.entrySet()) {
+                if (entry.getValue().equals(values.get(i))) {
+                    bests.add(entry.getKey());
+                    break;
+                }
+            }
+        }
+        return bests;
     }
 
 }
