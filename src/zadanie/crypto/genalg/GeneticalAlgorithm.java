@@ -28,9 +28,9 @@ public class GeneticalAlgorithm {
         this.cipherText = Text.convertToTSA(CT, false);
         this.keySize = KS;
 
-        for (int i = 0; i < 100; i++) {
-            System.out.println(geneticAlgorithmRun());
-        }
+//        for (int i = 0; i < 100; i++) {
+//            System.out.println(geneticAlgorithmRun());
+//        }
     }
 
     public GeneticalAlgorithm(String cipherText, int keySize, int iterationNo) {
