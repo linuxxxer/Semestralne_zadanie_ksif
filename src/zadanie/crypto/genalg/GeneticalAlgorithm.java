@@ -86,6 +86,7 @@ public class GeneticalAlgorithm {
         genPop();
 
         for (int i = 0; i < iterationNo; i++) {
+            System.out.println("Iteration: " + i);
             for (Integer[] pop : population) {
                 transKey = new TranspositionKey(pop);
                 openText = transCipher.decrypt(cipherText, transKey);
@@ -118,11 +119,15 @@ public class GeneticalAlgorithm {
                 individual = mutate.mutate(individual, mutationProbability);
             }
 
+            fitness.clear();
             population.clear();
             for (Integer[] individual : bests) {
                 population.add(individual);
             }
 
+            for (int k = population.size(); k < DEF_POP; k++) {
+                population.add(genIndividual());
+            }
 
 
         }
