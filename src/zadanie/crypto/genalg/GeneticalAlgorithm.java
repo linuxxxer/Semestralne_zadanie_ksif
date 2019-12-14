@@ -14,9 +14,9 @@ public class GeneticalAlgorithm {
     private String openText = "";
 //    default keySize = 5
     private int keySize = 5;
-    private int iterationNo = 500;
+    private int iterationNo = 1000;
 
-    private double mutationProbability = 0.1;
+    private double mutationProbability = 0.01;
 
     private int DEF_POP = 12;
 
@@ -27,7 +27,10 @@ public class GeneticalAlgorithm {
     public GeneticalAlgorithm(String CT, int KS) {
         this.cipherText = Text.convertToTSA(CT, false);
         this.keySize = KS;
-        geneticAlgorithmRun();
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(geneticAlgorithmRun());
+        }
     }
 
     public GeneticalAlgorithm(String cipherText, int keySize, int iterationNo) {
@@ -54,8 +57,6 @@ public class GeneticalAlgorithm {
 
     private Integer[] genIndividual() {
         Random random = new Random();
-        int recent;
-        int prev = 0;
         Integer[] ret = new Integer[keySize];
         for(int j=0;j<keySize;j++) {
             int rand;
@@ -67,11 +68,11 @@ public class GeneticalAlgorithm {
         return ret;
     }
 
-    public void geneticAlgorithmRun() {
+    public String geneticAlgorithmRun() {
         fitness = new HashMap<>();
         HashMap<String, Double> frek;
 
-        ArrayList<Integer[]> bests = new ArrayList<>();
+        ArrayList<Integer[]> bests;
 
         double[][] bigramIn;
 
@@ -86,7 +87,6 @@ public class GeneticalAlgorithm {
         genPop();
 
         for (int i = 0; i < iterationNo; i++) {
-            System.out.println("Iteration: " + i);
             for (Integer[] pop : population) {
                 transKey = new TranspositionKey(pop);
                 openText = transCipher.decrypt(cipherText, transKey);
@@ -104,14 +104,11 @@ public class GeneticalAlgorithm {
 
             bests = selectSixBest();
 
-//            TODO call the crossing algorithm and the mutation for the best 6
-//            TODO do we need to generate 6 more individuals?
-//            TODO              if so, modify the genIndividual() method!!!
-
-//                TODO crossing ???
-            //System.out.println();
             for(int j=1;j<bests.size();j+=2) {
-                bests.set(j - 1,cross.crossover(bests.get(j-1), bests.get(j), 0.85));
+                Integer[] a = bests.get(j - 1);
+                Integer[] b = bests.get(j);
+                bests.set(j - 1, cross.crossover(a, b, 0.85));
+                bests.set(j , cross.crossover(a, b, 0.85));
             }
 
 //                mutation
@@ -132,17 +129,32 @@ public class GeneticalAlgorithm {
 
         }
 
-
+//        get the fitness for the last population
+        for (Integer[] pop : population) {
+            transKey = new TranspositionKey(pop);
+            openText = transCipher.decrypt(cipherText, transKey);
+            frek = TextStatistics.readNgram(openText, 2, true);
+            bigramIn = TextStatistics.convertMap(frek);
+            bigramFitness = BigramFitness.BigramFit(bigramIn);
+//                some bullshit... TODO TODO
+            if (fitness.containsKey(pop)) {
+                if (!(fitness.get(pop) < bigramFitness)) {
+                    continue;
+                }
+            }
+            fitness.put(pop, bigramFitness);
+        }
+        return transCipher.decrypt(cipherText, new TranspositionKey(getBest()));
     }
 
 //    method for selecting the best 6 individuals by their fitness value
 //    tato cast boli... ale funguje
     private ArrayList<Integer[]> selectSixBest() {
         ArrayList<Integer[]> bests = new ArrayList<Integer[]>(6);
-        List<Integer[]> keys = new LinkedList(fitness.keySet());
         List<Double> values = new LinkedList(fitness.values());
         values.sort(Comparator.naturalOrder());
         for (int i = 0; i < 6; i++) {   //TODO Preco 6 ??????????????
+                                                   //  Lebo vyberame 6 najlepsich (je to polovica populacie)
             for (Map.Entry<Integer[], Double> entry : fitness.entrySet()) {
                 if (entry.getValue().equals(values.get(i))) {
                     bests.add(entry.getKey());
@@ -151,6 +163,18 @@ public class GeneticalAlgorithm {
             }
         }
         return bests;
+    }
+
+    private Integer[] getBest() {
+        List<Double> values = new LinkedList<>(fitness.values());
+        values.sort(Comparator.naturalOrder());
+        Integer[] best = new Integer[keySize];
+        for (Map.Entry<Integer[], Double> entry : fitness.entrySet()) {
+            if (entry.getValue().equals(values.get(0))) {
+                best = entry.getKey();
+            }
+        }
+        return best;
     }
 
 }
