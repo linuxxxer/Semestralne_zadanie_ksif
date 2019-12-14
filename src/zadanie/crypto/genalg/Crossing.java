@@ -15,17 +15,6 @@ public class Crossing {
             Integer[] permutation = new Integer[a.length];
             int CROSSOVER_SEGMENT_SIZE = a.length/2;
 
-            for (Integer i : a) {
-                if (i == null) {
-                    System.out.println("Fuck");
-                }
-            }
-            for (Integer i : b) {
-                if (i == null) {
-                    System.out.println("Fuck");
-                }
-            }
-
             double p = r.nextDouble();
             if (p <= crossoverProbability) {
                 // Acquire random segment
@@ -60,7 +49,6 @@ public class Crossing {
                 }
             }
             /*else if (p < 2) {
-                System.out.println("Herre");
                 // Mark[i] is true if value i is containde in permutation
                 boolean mark[] = new boolean[permutation.length];
                 boolean coin = true;
@@ -70,14 +58,12 @@ public class Crossing {
                 int step = 1;
 
                 if (r.nextDouble() <= 0.5) {
-                    System.out.println("Fuck?");
                     end = -1;
                     start = permutation.length;
                     step = -1;
                 }
 
                 for (int i = start-1; i > end; i += step) {
-                    System.out.println("HerreHerr");
                     int x = coin ? a[i]-1 : b[i]-1;
                     if (!mark[x]) {
                         mark[x] = true;
@@ -95,7 +81,6 @@ public class Crossing {
                     }
                 }
             } else {
-                System.out.println("Herre2");
                 // Acquire random segment
                 int left = r.nextInt(a.length);
                 //int right = r.nextInt(b.getSize());
