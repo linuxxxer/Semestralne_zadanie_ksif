@@ -102,8 +102,17 @@ public class JSecondFrame extends JFrame {
         nacitat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                genAlg = new GeneticalAlgorithm(readListener.readFromFile(readListener.getPath(JSecondFrame.super.rootPane)), 5);
-//                ot.setText( genAlg.geneticAlgorithmRun() );
+                String ZT = readListener.readFromFile(readListener.getPath(JSecondFrame.super.rootPane));
+                StringBuilder OTtext = new StringBuilder(new String(""));
+                for (int i = 3; i <= 20; i++) {
+                    if (ZT.length() % i == 0) {
+                        OTtext.append("Dlžka kľúča: ").append(i).append("\n\n");
+                        genAlg = new GeneticalAlgorithm(ZT, i);
+                        OTtext.append( genAlg.geneticAlgorithmRun() ).append("\n\n");
+                    }
+                }
+
+                ot.setText(String.valueOf(OTtext));
             }
         });
 
@@ -117,10 +126,22 @@ public class JSecondFrame extends JFrame {
         close.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDefault jDefault = new JDefault();
+                new JDefault();
                 JSecondFrame.this.dispose();
             }
         });
+    }
+
+    private int guessKey(String zt) {
+
+        for (int i = 0; i < 20; i++) {
+            if (zt.length() % i == 0) {
+                System.out.println("Guessed: " + i);
+                return i;
+            }
+        }
+
+        return 0;
     }
 
 }
