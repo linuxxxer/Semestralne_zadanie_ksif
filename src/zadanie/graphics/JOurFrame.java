@@ -17,7 +17,7 @@ public class JOurFrame extends JFrame {
     private JButton clear;
     private JTextField textField;
 
-    private String DEFAULTPERMLABELTEXT = "Unknown permutation";
+    private String DEFAULTPERMLABELTEXT = "Neznáma permutácia";
 
     decryptListener decryptIt;
     String permutation;
@@ -68,14 +68,14 @@ public class JOurFrame extends JFrame {
         clear.setForeground(Color.WHITE);
         clear.setBounds(180, 520, 120, 40);
 
-        konci = new JButton("Exit");
+        konci = new JButton("Ukončiť");
         konci.setBackground(Color.DARK_GRAY);
         konci.setForeground(Color.WHITE);
         konci.setBounds(320, 520, 120, 40);
 
 
 //        nastavenia frameu
-        this.setName("Transposition Cipher");
+        this.setTitle("Anagramová metóda");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -102,7 +102,7 @@ public class JOurFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String ZT = textField.getText();
                 ot.setText(decryptIt.decrypt(ZT));
-                permLabel.setText("Permutation: " + decryptIt.getPerm());
+                permLabel.setText("Permutácia: " + decryptIt.getPerm());
             }
         });
 
@@ -118,7 +118,7 @@ public class JOurFrame extends JFrame {
                 if (perm.equals("0")) {
                     permLabel.setText(DEFAULTPERMLABELTEXT);
                 } else {
-                    permLabel.setText("Permutation: " + decryptIt.getPerm());
+                    permLabel.setText("Permutácia: " + decryptIt.getPerm());
                 }
 
             }
@@ -128,7 +128,7 @@ public class JOurFrame extends JFrame {
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                permLabel.setText("Unknown permutation");
+                permLabel.setText(DEFAULTPERMLABELTEXT);
                 ot.setText("");
             }
         });

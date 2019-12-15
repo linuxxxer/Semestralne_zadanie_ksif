@@ -15,7 +15,7 @@ public class JDefault extends JFrame {
 
     public JDefault() {
         getContentPane().setBackground(Color.GRAY);
-        this.setName("Transition breaker 2.0");
+        this.setTitle("Transition breaker");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.setSize(350, 350);
@@ -31,7 +31,7 @@ public class JDefault extends JFrame {
         jSecondFrame.setForeground(Color.WHITE);
         jSecondFrame.setBounds(200, 100, 120, 30);
 
-        close = new JButton("Exit");
+        close = new JButton("Ukončiť");
         close.setBackground(Color.DARK_GRAY);
         close.setForeground(Color.WHITE);
         close.setBounds(125, 250, 100, 30);

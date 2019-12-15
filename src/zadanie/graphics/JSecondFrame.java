@@ -36,14 +36,14 @@ public class JSecondFrame extends JFrame {
         getContentPane().setBackground(Color.GRAY);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setName("Geneticky");
+        this.setTitle("Genetický algoritmus");
         this.setSize(600, 600);
         this.setVisible(true);
         this.setLayout(null);
 
         zadajLabel = new JLabel("Zadaj zašifrovaný text: ");
         zadajLabel.setBounds(10, 55, 190, 30);
-        zadajLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        zadajLabel.setVerticalAlignment(SwingConstants.CENTER);
 
         zt = new JTextField();
         zt.setBounds(200, 55, 250, 30);
@@ -75,7 +75,7 @@ public class JSecondFrame extends JFrame {
         clear.setForeground(Color.WHITE);
         clear.setBounds(250, 480, BUTTON_WIDTH, BUTTON_HEIGHT);
 
-        close = new JButton("Exit");
+        close = new JButton("Ukončiť");
         close.setBackground(Color.DARK_GRAY);
         close.setForeground(Color.WHITE);
         close.setBounds(250, 520,BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -143,17 +143,4 @@ public class JSecondFrame extends JFrame {
             }
         });
     }
-
-    private int guessKey(String zt) {
-
-        for (int i = 0; i < 20; i++) {
-            if (zt.length() % i == 0) {
-                System.out.println("Guessed: " + i);
-                return i;
-            }
-        }
-
-        return 0;
-    }
-
 }
