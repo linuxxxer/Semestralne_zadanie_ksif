@@ -23,7 +23,7 @@ public class Mutation {
     public Integer[] mutate(Integer[] key, double probability) {
         random = new Random();
         setMutationProb(probability);
-        System.out.println(key.length);
+        //System.out.println(key.length);
         int index1 = genenerateNumber(key.length);
         int index2;
         double mutt;
