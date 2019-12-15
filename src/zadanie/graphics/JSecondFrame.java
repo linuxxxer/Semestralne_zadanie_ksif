@@ -63,12 +63,12 @@ public class JSecondFrame extends JFrame {
         decrypt = new JButton("Dešifrovať");
         decrypt.setBackground(Color.DARK_GRAY);
         decrypt.setForeground(Color.WHITE);
-        decrypt.setBounds(470, 55, BUTTON_WIDTH, BUTTON_HEIGHT);
+        decrypt.setBounds(470, 55, BUTTON_WIDTH+20, BUTTON_HEIGHT);
 
         nacitat = new JButton("Načítať");
         nacitat.setBackground(Color.DARK_GRAY);
         nacitat.setForeground(Color.WHITE);
-        nacitat.setBounds(470, 95, BUTTON_WIDTH, BUTTON_HEIGHT);
+        nacitat.setBounds(470, 95, BUTTON_WIDTH+20, BUTTON_HEIGHT);
 
         clear = new JButton("Clear");
         clear.setBackground(Color.DARK_GRAY);
@@ -110,7 +110,6 @@ public class JSecondFrame extends JFrame {
             }
         });
 
-//        TODO nacitanie zo suboru
         nacitat.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

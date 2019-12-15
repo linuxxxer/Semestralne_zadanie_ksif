@@ -24,12 +24,12 @@ public class JDefault extends JFrame {
         jOurFrame = new JButton("Anagram");
         jOurFrame.setBackground(Color.DARK_GRAY);
         jOurFrame.setForeground(Color.WHITE);
-        jOurFrame.setBounds(50, 100, 100, 30);
+        jOurFrame.setBounds(30, 100, 120, 30);
 
         jSecondFrame = new JButton("Geneticky");
         jSecondFrame.setBackground(Color.DARK_GRAY);
         jSecondFrame.setForeground(Color.WHITE);
-        jSecondFrame.setBounds(200, 100, 100, 30);
+        jSecondFrame.setBounds(200, 100, 120, 30);
 
         close = new JButton("Exit");
         close.setBackground(Color.DARK_GRAY);

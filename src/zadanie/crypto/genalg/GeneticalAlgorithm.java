@@ -93,7 +93,6 @@ public class GeneticalAlgorithm {
                 frek = TextStatistics.readNgram(openText, 2, true);
                 bigramIn = TextStatistics.convertMap(frek);
                 bigramFitness = BigramFitness.BigramFit(bigramIn);
-//                some bullshit... TODO TODO
                 if (fitness.containsKey(pop)) {
                     if (!(fitness.get(pop) < bigramFitness)) {
                         continue;
@@ -136,7 +135,6 @@ public class GeneticalAlgorithm {
             frek = TextStatistics.readNgram(openText, 2, true);
             bigramIn = TextStatistics.convertMap(frek);
             bigramFitness = BigramFitness.BigramFit(bigramIn);
-//                some bullshit... TODO TODO
             if (fitness.containsKey(pop)) {
                 if (!(fitness.get(pop) < bigramFitness)) {
                     continue;
@@ -153,8 +151,7 @@ public class GeneticalAlgorithm {
         ArrayList<Integer[]> bests = new ArrayList<Integer[]>(6);
         List<Double> values = new LinkedList(fitness.values());
         values.sort(Comparator.naturalOrder());
-        for (int i = 0; i < 6; i++) {   //TODO Preco 6 ??????????????
-                                                   //  Lebo vyberame 6 najlepsich (je to polovica populacie)
+        for (int i = 0; i < 6; i++) {
             for (Map.Entry<Integer[], Double> entry : fitness.entrySet()) {
                 if (entry.getValue().equals(values.get(i))) {
                     bests.add(entry.getKey());
