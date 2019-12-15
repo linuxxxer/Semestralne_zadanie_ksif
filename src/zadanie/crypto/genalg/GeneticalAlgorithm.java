@@ -14,7 +14,7 @@ public class GeneticalAlgorithm {
     private String openText = "";
 //    default keySize = 5
     private int keySize = 5;
-    private int iterationNo = 1000;
+    private int iterationNo = 2000;
 
     private double mutationProbability = 0.01;
 

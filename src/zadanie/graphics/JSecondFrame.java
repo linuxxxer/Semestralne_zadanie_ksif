@@ -93,8 +93,20 @@ public class JSecondFrame extends JFrame {
         decrypt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                genAlg = new GeneticalAlgorithm(zt.getText(), 5);
-                ot.setText( genAlg.geneticAlgorithmRun() );
+                String ZT = zt.getText();
+                StringBuilder OTtext = new StringBuilder();
+                for (int i = 3; i <= 20; i++) {
+                    if (ZT.length() % i == 0) {
+                        OTtext.append("Dlžka kľúča: ").append(i).append("\n\n");
+                        genAlg = new GeneticalAlgorithm(ZT, i);
+                        try {
+                            OTtext.append(genAlg.geneticAlgorithmRun()).append("\n\n");
+                        } catch (Exception except) {
+                            continue;
+                        }
+                    }
+                }
+                ot.setText(String.valueOf(OTtext));
             }
         });
 
@@ -103,6 +115,7 @@ public class JSecondFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String ZT = readListener.readFromFile(readListener.getPath(JSecondFrame.super.rootPane));
+
                 StringBuilder OTtext = new StringBuilder(new String(""));
                 for (int i = 3; i <= 20; i++) {
                     if (ZT.length() % i == 0) {
