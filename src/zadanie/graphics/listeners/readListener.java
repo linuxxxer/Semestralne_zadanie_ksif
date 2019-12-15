@@ -1,9 +1,5 @@
 package zadanie.graphics.listeners;
 
-import com.sun.javafx.logging.JFRInputEvent;
-import com.sun.media.jfxmediaimpl.HostUtils;
-import zadanie.graphics.JOurFrame;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.BufferedReader;
@@ -30,9 +26,6 @@ public class readListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        System.out.println(file);
-
         return file;
     }
 

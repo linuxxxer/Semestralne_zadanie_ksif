@@ -25,7 +25,6 @@ public class JOurFrame extends JFrame {
     public JOurFrame() {
 
         getContentPane().setBackground(Color.GRAY);
-//        this.setBackground(Color.LIGHT_GRAY);
 
         decryptIt = new decryptListener();
 
@@ -88,8 +87,6 @@ public class JOurFrame extends JFrame {
         this.add(desifruj);
         this.add(konci);
         this.add(clear);
-//        this.add(ot);
-//        otScroll.setSize(570, 250);
         this.add(otScroll);
 
         this.setLayout(null);

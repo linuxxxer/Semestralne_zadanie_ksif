@@ -1,7 +1,5 @@
 package zadanie.graphics;
 
-import jdk.nashorn.internal.scripts.JD;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

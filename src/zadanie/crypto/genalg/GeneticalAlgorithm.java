@@ -27,10 +27,6 @@ public class GeneticalAlgorithm {
     public GeneticalAlgorithm(String CT, int KS) {
         this.cipherText = Text.convertToTSA(CT, false);
         this.keySize = KS;
-
-//        for (int i = 0; i < 100; i++) {
-//            System.out.println(geneticAlgorithmRun());
-//        }
     }
 
     public GeneticalAlgorithm(String cipherText, int keySize, int iterationNo) {
@@ -69,6 +65,11 @@ public class GeneticalAlgorithm {
     }
 
     public String geneticAlgorithmRun() {
+
+        if (cipherText.equals("")) {
+            return "";
+        }
+
         fitness = new HashMap<>();
         HashMap<String, Double> frek;
 
